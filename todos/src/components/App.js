@@ -3,6 +3,7 @@ import '../index.css';
 import TodoList from './TodoList.js';
 import todoList from '../todos.json';
 import { Switch, Route } from "react-router-dom";
+import { } from '../actions/index.js';
 
 class App extends Component {
   state = {
@@ -71,7 +72,7 @@ class App extends Component {
       addTodo: this.addTodo,
       deleteOne: this.deleteOne,
       deleteAll: this.deleteAll,
-      completed: todos.filter(todo => !todo.completed).length
+      // completed: todos.filter(todo => !todo.completed).length
     };
 
     return (

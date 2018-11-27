@@ -3,7 +3,7 @@ export const ADD_TODO = 'ADD_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
 export const CLEAR_COMPLETED_TODOS = 'CLEAR_COMPLETED_TODOS';
 
-export const toggleTodo = (id) => {
+export const toggleCompleted = (id) => {
     return {
         type: TOGGLE_TODO,
         payload: id
@@ -17,14 +17,14 @@ export const addTodo = (title) => {
     }
 };
 
-export const deleteTodo = (id) => {
+export const deleteOne = (id) => {
     return {
         type: DELETE_TODO,
         payload: id
     }
 };
 
-export const clearCompleted = () => {
+export const deleteAll = () => {
     return {
         type: CLEAR_COMPLETED_TODOS
     }

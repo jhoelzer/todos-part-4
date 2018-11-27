@@ -1,5 +1,6 @@
 import { TOGGLE_TODO, ADD_TODO, DELETE_TODO, CLEAR_COMPLETED_TODOS} from '../actions/index.js';
 import todoList from '../todos.json';
+import { combineReducers } from 'redux';
 
 const initialState = {
     todoList

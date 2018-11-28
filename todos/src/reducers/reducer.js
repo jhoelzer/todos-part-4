@@ -1,6 +1,5 @@
 import { TOGGLE_TODO, ADD_TODO, DELETE_TODO, CLEAR_COMPLETED_TODOS} from '../actions/index.js';
 import todoList from '../todos.json';
-import { combineReducers } from 'redux';
 
 const initialState = {
     todoList
@@ -9,28 +8,51 @@ const initialState = {
 const todoReducer = (state = initialState, action) => {
     switch (action.type) {
         case TOGGLE_TODO:
+            const newTodosToggle = state.todoList.map(todo => {
+                if (todo.id === action.payload) {
+                todo.completed = !todo.completed;
+                }
+        
+                return todo;
+            });
             return {
                 ...state,
-                todos: state.todos.map(todo => {
-                    todo.id === action.id ? todo.completed = !todo.completed : null
-                    return todo;
-                })
+                todoList: newTodosToggle
             };
+
         case ADD_TODO:
-            return {
-                ...state,
-                todos: [state.todos, { title: action.title, completed: false, id: action.keyNumber, userID: 1 }]
+            let makeId = Math.floor(Math.random() * 500000000);
+            let newest = {
+                userId: 1,
+                id: makeId,
+                title: action.payload,
+                completed: false
             };
+            return {
+                ...state,
+                todos: [...state.todoList, newest]
+            };
+
         case DELETE_TODO:
+            const newTodosDelete = state.todoList.filter(todo => {
+                if (todo.id === action.payload) {
+                    return false;
+                }
+        
+                return true;
+            });
             return {
                 ...state,
-                todos: state.todos.filter(todo => todo.id !== action.id)
+                todoList: newTodosDelete
             }
+
         case CLEAR_COMPLETED_TODOS:
+            const newTodosDeleteComp = state.todoList.filter(todo => !todo.completed)
             return {
                 ...state,
-                todos: state.todos.filter(todo => todo.completed === false)
-            }
+                todoList: newTodosDeleteComp
+            };
+
         default:
             return state;
     }

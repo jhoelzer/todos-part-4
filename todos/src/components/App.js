@@ -3,7 +3,7 @@ import '../index.css';
 import TodoList from './TodoList.js';
 import todoList from '../todos.json';
 import { Switch, Route } from "react-router-dom";
-import { } from '../actions/index.js';
+import { deleteOne, toggleCompleted } from '../actions/index.js';
 import connect from 'react-redux/lib/connect/connect';
 
 class App extends Component {

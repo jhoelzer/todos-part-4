@@ -13,7 +13,7 @@ class App extends Component {
   };
 
   deleteOne = clickedId => event => {
-    this.props.toggleCompleted(clickedId)
+    this.props.deleteOne(clickedId)
   };
 
   render() {

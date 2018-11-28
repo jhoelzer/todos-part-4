@@ -7,19 +7,6 @@ const initialState = {
 
 const todoReducer = (state = initialState, action) => {
     switch (action.type) {
-        case TOGGLE_TODO:
-            const newTodosToggle = state.todoList.map(todo => {
-                if (todo.id === action.payload) {
-                todo.completed = !todo.completed;
-                }
-        
-                return todo;
-            });
-            return {
-                ...state,
-                todoList: newTodosToggle
-            };
-
         case ADD_TODO:
             let makeId = Math.floor(Math.random() * 500000000);
             let newest = {
@@ -31,6 +18,13 @@ const todoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 todos: [...state.todoList, newest]
+            };
+
+        case CLEAR_COMPLETED_TODOS:
+            const newTodosDeleteComp = state.todoList.filter(todo => !todo.completed)
+            return {
+                ...state,
+                todoList: newTodosDeleteComp
             };
 
         case DELETE_TODO:
@@ -46,11 +40,17 @@ const todoReducer = (state = initialState, action) => {
                 todoList: newTodosDelete
             }
 
-        case CLEAR_COMPLETED_TODOS:
-            const newTodosDeleteComp = state.todoList.filter(todo => !todo.completed)
+        case TOGGLE_TODO:
+            const newTodosToggle = state.todoList.map(todo => {
+                if (todo.id === action.payload) {
+                todo.completed = !todo.completed;
+                }
+        
+                return todo;
+            });
             return {
                 ...state,
-                todoList: newTodosDeleteComp
+                todoList: newTodosToggle
             };
 
         default:

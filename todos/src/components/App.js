@@ -19,19 +19,17 @@ class App extends Component {
   render() {
     const { todos } = this.props;
     const allHandlingProps = {
-      toggleCompleted: this.toggleCompleted,
-      // addTodo: this.addTodo,
       deleteOne: this.deleteOne,
-      // deleteAll: this.deleteAll,
+      toggleCompleted: this.toggleCompleted,
       completed: todos.filter(todo => !todo.completed).length
     };
 
     return (
       <section className="todoapp">
         <Switch>
-          <Route path="/active" render={props => <TodoList {...props} {...allHandlingProps} todos={todos.filter(todo => !todo.completed)} />} />
-          <Route path="/completed" render={props => <TodoList {...props} {...allHandlingProps} todos={todos.filter(todo => todo.completed)} />} />
-          <Route path="/" render={props => <TodoList {...props} {...allHandlingProps} todos={todos} />} />
+          <Route exact path="/active" render={props => <TodoList {...props} {...allHandlingProps} todos={todos.filter(todo => !todo.completed)} />} />
+          <Route exact path="/completed" render={props => <TodoList {...props} {...allHandlingProps} todos={todos.filter(todo => todo.completed)} />} />
+          <Route exact path="/" render={props => <TodoList {...props} {...allHandlingProps} todos={todos} />} />
         </Switch>
       </section>
     );

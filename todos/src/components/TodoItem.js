@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { addTodo, deleteOne, toggleCompleted } from '../actions/index';
+import { connect } from 'react-redux';
 
 class TodoItem extends Component {
     render() {

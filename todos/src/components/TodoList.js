@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import TodoHeader from './TodoHeader.js';
+import TodoFooter from './TodoFooter.js';
 import TodoItem from './TodoItem.js';
-import todoList from '../todos.json';
-import { NavLink } from "react-router-dom";
 
 class TodoList extends Component {
-    state = { todos: todoList };
 
     render() {
-        const { todos } = this.props;
+        const { todos, addTodo } = this.props;
     
         return (
             <React.Fragment>
-                <header className="header">
-                    <h1>Todos</h1>
-                    <input className="new-todo" placeholder="What needs doing?" onKeyDown={this.props.addTodo} autoFocus />
-                </header>
-
+                <TodoHeader addTodo={addTodo} />
                 <section className="main">
                     <ul className="todo-list">
                         {todos.map(todo =>
@@ -29,16 +25,7 @@ class TodoList extends Component {
                         )}
                     </ul>
                 </section>
-
-                <footer className="footer">
-                    <span className="todo-count"><strong>{this.props.completed}</strong> items(s) left</span>
-                    <ul className="filters">
-                        <li><NavLink exact to="/" activeClassName="selected">All</NavLink></li>
-                        <li><NavLink exact to="/active" activeClassName="selected">Active</NavLink></li>
-                        <li><NavLink exact to="/completed" activeClassName="selected">Completed</NavLink></li>
-                    </ul>
-                    <button className="clear-completed" onClick={this.deleteAll}>Clear Completed</button>
-                </footer>
+                <TodoFooter completed={this.props.completed} deleteAll={this.props.deleteAll} filter={this.props.location.pathname} />
             </React.Fragment>
         );
     };

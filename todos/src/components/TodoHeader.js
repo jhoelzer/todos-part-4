@@ -7,7 +7,7 @@ class TodoHeader extends Component {
         title: ""
     };
 
-    handleChange =  evenet => {
+    handleChange =  event => {
         this.setState({
             title: event.target.value
         })
@@ -38,7 +38,7 @@ class TodoHeader extends Component {
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        addTodo: id => dispatch(addTodo(title))
+        addTodo: title => dispatch(addTodo(title))
     }
 };
 

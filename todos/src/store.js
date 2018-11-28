@@ -1,4 +1,4 @@
-import { createStore } from '../../../../Library/Caches/typescript/3.0/node_modules/redux';
+import { createStore } from 'redux';
 import reducer from './reducers';
 
 const store = createStore(reducer, window._REDUX_DEVTOOLS_EXTENSION_ && window._REDUX_DEVTOOLS_EXTENSION_())
